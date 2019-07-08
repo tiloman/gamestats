@@ -14,6 +14,7 @@ gem 'sassc', '~> 2.0', '>= 2.0.1'
 gem 'sassc-rails', '~> 2.1', '>= 2.1.2'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.5'
 gem 'bootstrap', '~> 4.3', '>= 4.3.1'
+gem 'devise'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 

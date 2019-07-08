@@ -14,6 +14,7 @@ class MatchesTest < ApplicationSystemTestCase
     visit matches_url
     click_on "New Match"
 
+    fill_in "Game", with: @match.game
     click_on "Create Match"
 
     assert_text "Match was successfully created"
@@ -24,6 +25,7 @@ class MatchesTest < ApplicationSystemTestCase
     visit matches_url
     click_on "Edit", match: :first
 
+    fill_in "Game", with: @match.game
     click_on "Update Match"
 
     assert_text "Match was successfully updated"

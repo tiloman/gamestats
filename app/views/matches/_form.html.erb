@@ -12,31 +12,33 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :game %>
+    <%= form.label 'Spiel' %>
     <%= form.text_field :game %>
   </div>
 
   <div class="field">
-    <%= form.label :player1 %>
-    <%= form.text_field :player1 %>
+    <%= form.label 'Du' %>
+    <%= form.text_field :player1, :value => match.user_id %>
   </div>
 
   <div class="field">
-    <%= form.label :player2 %>
+    <%= form.label 'Dein Gegner' %>
     <%= form.text_field :player2 %>
   </div>
 
   <div class="field">
-    <%= form.label :scoreplayer1 %>
+    <%= form.label 'Deine Punktzahl' %>
     <%= form.text_field :scoreplayer1 %>
   </div>
 
   <div class="field">
-    <%= form.label :scoreplayer2 %>
+    <%= form.label 'Gegnerische Punkte'%>
     <%= form.text_field :scoreplayer2 %>
   </div>
+
 
   <div class="actions">
     <%= form.submit %>
   </div>
+
 <% end %>

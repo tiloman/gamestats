@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_08_141421) do
+ActiveRecord::Schema.define(version: 2019_07_08_174122) do
 
   create_table "matches", force: :cascade do |t|
     t.text "game"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 2019_07_08_141421) do
     t.text "player2"
     t.integer "scoreplayer1"
     t.integer "scoreplayer2"
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_matches_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

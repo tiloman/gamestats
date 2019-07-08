@@ -1,31 +1,46 @@
-<p id="notice"><%= notice %></p>
+<h1>Spiele</h1>
 
-<h1>Matches</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Game</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
     <% @matches.each do |match| %>
-      <tr>
-        <td><%= match.game %></td>
-        <td><%= match.player1 %></td>
-        <td><%= match.player2 %></td>
-        <td><%= match.scoreplayer1 %></td>
-        <td><%= match.scoreplayer2 %></td>
-
-        <td><%= link_to 'Show', match %></td>
-        <td><%= link_to 'Edit', edit_match_path(match) %></td>
-        <td><%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div class='card'>
+        <div class='card-body'>
+        <h5 class='card-title'>
+          <%= match.player1 %>
+          vs.
+          <%= match.player2 %>
+        </h5>
+        <h6 class='card-subtitle text-muted'>
+            <%= match.game %>
+            <br>
+            <%= match.created_at.strftime("Am %d.%m.%Y um %H:%M Uhr") %>
+        </h6>
+        <div class='card-text'>
+        <%= match.scoreplayer1 %>
+        <%= match.scoreplayer2 %>
+        </div>
+        <br>
+        <%= link_to 'Show', match, class:'card-link' %>
+        <%= link_to 'Edit', edit_match_path(match), class:'card-link' %>
+        <%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' }, class:'card-link' %>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
+
+
+
+<br><br>
+
+Alle Spieler:
+<br>
+<% player1list =  Match.distinct.pluck(:player1).compact %>
+<% player2list = Match.distinct.pluck(:player2).compact %>
+<% allPlayers = (player1list + player2list).uniq %>
+<% allPlayers.each do |player| %>
+  <%= player %>
+  <br>
+<% end %>
+
 
 <br>
 

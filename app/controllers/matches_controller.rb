@@ -23,6 +23,8 @@ class MatchesController < ApplicationController
 
   # GET /matches/1/edit
   def edit
+    @user = current_user
+    @allUsers = User.all.where("id != ?",current_user.id)
   end
 
   # POST /matches

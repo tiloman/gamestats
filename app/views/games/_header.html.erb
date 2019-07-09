@@ -6,8 +6,10 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <%= link_to 'Alle Spiele', matches_path, class: "nav-item nav-link" %>
-      <%= link_to 'Meine Spiele', games_myMatches_path, class: "nav-item nav-link" %>
-      <%= link_to 'Neu', new_match_path, class: "nav-item nav-link" %>
+      <% if user_signed_in? %>
+        <%= link_to 'Meine Spiele', games_myMatches_path, class: "nav-item nav-link" %>
+        <%= link_to 'Neu', new_match_path, class: "nav-item nav-link" %>
+      <% end %>
       <%= link_to 'About', games_about_path, class: "nav-item nav-link" %>
       <% if user_signed_in? == false %>
         <%= link_to 'Login', new_user_session_path, class: "nav-item nav-link" %>

@@ -6,6 +6,7 @@ class MatchesController < ApplicationController
   # GET /matches.json
   def index
     @matches = Match.all.order('created_at DESC')
+    @matches_days = @matches.group_by {|match| match.created_at.to_date }
   end
 
 

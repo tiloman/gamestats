@@ -16,7 +16,7 @@ gem 'jquery-rails', '~> 4.3', '>= 4.3.5'
 gem 'bootstrap', '~> 4.3', '>= 4.3.1'
 gem 'devise'
 gem 'bootsnap', '>= 1.1.0', require: false
-
+gem 'paperclip'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

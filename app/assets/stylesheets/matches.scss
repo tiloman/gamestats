@@ -3,19 +3,19 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .won {
-  background-color: rgba(63,191,63,0.24);
+  border-left: 10px solid rgba(63,191,63,0.54);
 }
 
 .won:hover {
-  background-color: rgba(63,191,63,0.54);
+  background-color: rgba(63,191,63,0.24);
 }
 
 .lost {
-  background-color: rgba(191,63,63,0.24);
+  border-left: 10px solid rgba(191,63,63,0.54);
 }
 
 .lost:hover {
-  background-color: rgba(191,63,63,0.54);
+  background-color: rgba(191,63,63,0.24);
 }
 
 .card {
@@ -31,7 +31,20 @@
   font-weight: 200;
 }
 
+.date {
+  color: #f25c41;
+  font-size: 1.2em;
+  font-weight: 400;
+  border-bottom: 1px solid #f25c41;
+  margin-left: 70%;
+  margin-bottom: 1em;
+  text-align: right;
+}
 .result {
   font-size: 1.8em;
+  text-align: center;
+}
+
+.card-body {
   text-align: center;
 }

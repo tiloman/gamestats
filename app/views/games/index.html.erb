@@ -3,4 +3,10 @@
 <p>Eine kleine App zum festhalten von Kartenspielergebnissen mit schönen Grafiken zum Auswerten ... </p>
 <%= link_to 'Login', new_user_session_path, class:'btn btn-outline-primary' %>
 <%= link_to 'Registrieren', new_user_registration_path, class:'btn btn-outline-secondary' %>
+
+  <% @allUsers.each do |u|%>
+  <%= u.vorname %>
+  <br/>
+  <% end %>
+
 </div>

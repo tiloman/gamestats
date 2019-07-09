@@ -5,8 +5,9 @@ class MatchesController < ApplicationController
   # GET /matches
   # GET /matches.json
   def index
-    @matches = Match.all
+    @matches = Match.all.order('created_at DESC')
   end
+
 
   # GET /matches/1
   # GET /matches/1.json
@@ -16,6 +17,8 @@ class MatchesController < ApplicationController
   # GET /matches/new
   def new
     @match = current_user.matches.build
+    @user = current_user
+    @allUsers = User.all.where("id != ?",current_user.id)
   end
 
   # GET /matches/1/edit
@@ -26,6 +29,9 @@ class MatchesController < ApplicationController
   # POST /matches.json
   def create
     @match = current_user.matches.build(match_params)
+    @user = current_user
+    @allUsers = User.all
+
 
     respond_to do |format|
       if @match.save
@@ -62,6 +68,8 @@ class MatchesController < ApplicationController
     end
   end
 
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_match
@@ -77,6 +85,7 @@ class MatchesController < ApplicationController
       @match = current_user.matches.find_by(id: params[:id])
       redirect_to matches_path, notice: "Du darfst den Eintrag nicht verändern." if @match.nil?
     end
+
 
 
 end

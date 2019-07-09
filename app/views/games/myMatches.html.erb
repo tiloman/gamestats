@@ -1,0 +1,81 @@
+<h1>Meine Spiele</h1>
+
+<% overallscore = 0 %>
+<% wonmatches = 0 %>
+<% lostmatches = 0 %>
+
+<% count_score(@matches) %>
+<% count_wins(@matches) %>
+<% count_loses(@matches) %>
+
+
+<% @matches.each do |match| %>
+  <% player1 = User.find(match.player1) %>
+  <% player2 = User.find(match.player2) %>
+
+  <% if player1 == current_user %>
+    <% overallscore = overallscore + match.scoreplayer1 %>
+      <% if match.scoreplayer1 < match.scoreplayer2 %>
+        <% wonmatches = wonmatches + 1 %>
+      <% else %>
+        <% lostmatches = lostmatches + 1 %>
+      <% end %>
+  <% elsif player2 == current_user%>
+    <% overallscore = overallscore + match.scoreplayer2 %>
+      <% if match.scoreplayer2 > match.scoreplayer1 %>
+        <% wonmatches = wonmatches + 1 %>
+      <% else %>
+        <% lostmatches = lostmatches + 1 %>
+      <% end %>
+  <% end %>
+
+  <div class='card'>
+    <% if win_or_lose(match) == "Win" %>
+      <div class='card-body won'>
+    <% elsif win_or_lose(match) == "Lose" %>
+      <div class='card-body lost'>
+    <% else %>
+      <div class='card-body'>
+    <% end %>
+
+    <h5>
+      <%= link_to "#{player1.vorname} vs. #{player2.vorname}", match, class:'card-title' %>
+    </h5>
+
+    <h6 class='card-subtitle text-muted'>
+        <%= match.game %>
+    </h6>
+
+    <div class='result'>
+      <%= match.scoreplayer1 %>
+      :
+      <%= match.scoreplayer2 %>
+    </div>
+
+    <br>
+
+    <% if match.user == current_user %>
+      <%= link_to 'Edit', edit_match_path(match), class:'card-link' %>
+      <%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' }, class:'card-link' %>
+    <% end %>
+
+    <div class='timestamp'>
+      <%= date_format(match.created_at) %>
+    </div>
+  </div>
+  </div>
+<% end %>
+<br>
+
+Gesamtpunktzahl:
+<%= overallscore %>
+
+Gewonnene Spiele:
+<%= wonmatches %>
+
+Verlorene Spiele:
+<%= lostmatches %>
+
+<br>
+
+<%= link_to 'New Match', new_match_path %>

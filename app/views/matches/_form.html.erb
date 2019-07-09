@@ -11,19 +11,21 @@
     </div>
   <% end %>
 
+
+
+
   <div class="field">
     <%= form.label 'Spiel' %>
-    <%= form.text_field :game %>
+    <%= form.select :game, options_for_select([['Romme'], ['Mau Mau']])%>
   </div>
 
   <div class="field">
-    <%= form.label 'Du' %>
-    <%= form.text_field :player1, :value => match.user_id %>
+    <%= form.hidden_field :player1, :value => @user.id %>
   </div>
 
   <div class="field">
     <%= form.label 'Dein Gegner' %>
-    <%= form.text_field :player2 %>
+    <%= form.select :player2, options_for_select(@allUsers.collect {|p| [p.vorname, p.id]}) %>
   </div>
 
   <div class="field">

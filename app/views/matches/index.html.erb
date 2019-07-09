@@ -5,43 +5,32 @@
     <% @matches.each do |match| %>
       <div class='card'>
         <div class='card-body'>
-        <h5 class='card-title'>
-          <%= match.player1 %>
-          vs.
-          <%= match.player2 %>
+          <% player1 = User.find(match.player1) %>
+          <% player2 = User.find(match.player2) %>
+        <h5>
+          <%= link_to "#{player1.vorname} vs. #{player2.vorname}", match, class:'card-title' %>
         </h5>
         <h6 class='card-subtitle text-muted'>
             <%= match.game %>
             <br>
-            <%= match.created_at.strftime("Am %d.%m.%Y um %H:%M Uhr") %>
+            <%= date_format(match.created_at) %>
         </h6>
         <div class='card-text'>
         <%= match.scoreplayer1 %>
         <%= match.scoreplayer2 %>
         </div>
         <br>
-        <%= link_to 'Show', match, class:'card-link' %>
-        <%= link_to 'Edit', edit_match_path(match), class:'card-link' %>
-        <%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' }, class:'card-link' %>
+        <% if match.user == current_user %>
+          <%= link_to 'Edit', edit_match_path(match), class:'card-link' %>
+          <%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' }, class:'card-link' %>
+        <% end %>
         </div>
       </div>
     <% end %>
 
 
 
-<br><br>
-
-Alle Spieler:
 <br>
-<% player1list =  Match.distinct.pluck(:player1).compact %>
-<% player2list = Match.distinct.pluck(:player2).compact %>
-<% allPlayers = (player1list + player2list).uniq %>
-<% allPlayers.each do |player| %>
-  <%= player %>
-  <br>
-<% end %>
-
-
 <br>
 
 <%= link_to 'New Match', new_match_path %>

@@ -9,6 +9,16 @@
   </div>
 
   <div class="field">
+    <%= f.label :vorname %><br />
+    <%= f.text_field :vorname, autocomplete: "Vorname" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :nachname %><br />
+    <%= f.text_field :nachname, autocomplete: "Nachname" %>
+  </div>
+
+  <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>

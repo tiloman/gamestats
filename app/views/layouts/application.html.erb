@@ -4,13 +4,15 @@
     <title>Gamestats</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
+    <%= render 'games/header' %>
+
     <div class='container'>
-      <%= render 'games/header' %>
       <p class='notice'><%= notice %></p>
       <p class='alert'><%= alert %></p>
       <%= yield %>

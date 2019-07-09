@@ -1,3 +1,37 @@
 // Place all the styles related to the Matches controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.won {
+  background-color: rgba(63,191,63,0.24);
+}
+
+.won:hover {
+  background-color: rgba(63,191,63,0.54);
+}
+
+.lost {
+  background-color: rgba(191,63,63,0.24);
+}
+
+.lost:hover {
+  background-color: rgba(191,63,63,0.54);
+}
+
+.card {
+  max-width: 400px;
+  margin: auto;
+  margin-bottom: 1em;
+}
+
+.timestamp {
+  color: grey;
+  float: right;
+  font-size: 0.8em;
+  font-weight: 200;
+}
+
+.result {
+  font-size: 1.8em;
+  text-align: center;
+}

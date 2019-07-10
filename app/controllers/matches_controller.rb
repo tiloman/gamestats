@@ -40,6 +40,8 @@ class MatchesController < ApplicationController
       if @match.save
         format.html { redirect_to @match, notice: 'Match was successfully created.' }
         format.json { render :show, status: :created, location: @match }
+        #@player1.update_column(:score, @match.scoreplayer1)
+
       else
         format.html { render :new }
         format.json { render json: @match.errors, status: :unprocessable_entity }

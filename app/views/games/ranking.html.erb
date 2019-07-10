@@ -1,0 +1,22 @@
+<h1>Ranking</h1>
+
+<table style="width: 100%">
+  <tr>
+    <th>#</th>
+    <th>User</th>
+    <th>Score</th>
+  </tr>
+  <% x= 1 %>
+  <% @allUsers.each do |user| %>
+    <tr>
+      <td><%= x %></td>
+        <td>
+          <%= image_tag(user.avatar.url(:thumb), class:'nav_avatar')%>
+          <%= user.vorname %>
+      </td>
+      <td style="float: right"><%= user.score %></td>
+    </tr>
+
+  <% x+=1 %>
+  <% end %>
+</table>

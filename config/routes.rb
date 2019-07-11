@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :matches
-  resources :users
   devise_for :users
+  resources :users
 
   root 'games#index'
   get 'games/about'

@@ -23,14 +23,5 @@ module MatchesHelper
     end
   end
 
-  def count_score(matches)
-  end
-
-  def count_wins(matches)
-  end
-
-  def count_loses(matches)
-  end
-
 
 end

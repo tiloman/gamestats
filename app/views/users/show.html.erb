@@ -1,0 +1,49 @@
+<h1><%= @user.vorname %></h1>
+<%= image_tag (@user.avatar.url(:medium)), class:'avatar_big' %>
+<br />
+
+Score:
+<%= @user.score %>
+<br />
+Verlorene Duelle
+<%= @user.lost_matches %>
+<br />
+
+Gewonnene Duelle
+<%= @user.won_matches %>
+<br />
+
+
+Matches:<br>
+<% i = 1 %>
+<% @my_matches.each do |match| %>
+  <% player1 = User.find(match.player1) %>
+  <% player2 = User.find(match.player2) %>
+  <%= i %>
+  <%= date_format(match.created_at) %>
+
+  <% if player1 == @user %>
+    <%= player2.vorname %>
+    <% if match.scoreplayer1 > match.scoreplayer2 %>
+      Verloren
+      <%= match.scoreplayer2- match.scoreplayer1 %>
+    <% else %>
+      Gewonnen
+      <%= match.scoreplayer2 + match.scoreplayer1 %>
+    <% end %>
+  <% elsif player2 == @user %>
+    <%= player1.vorname %>
+    <% if match.scoreplayer1 > match.scoreplayer2 %>
+      Gewonnen
+      <%= match.scoreplayer1+ match.scoreplayer2 %>
+
+    <% else %>
+      Verloren
+      <%= match.scoreplayer1- match.scoreplayer2 %>
+
+    <% end %>
+<% i = i + 1 %>
+  <% end %>
+
+  <br>
+<% end %>

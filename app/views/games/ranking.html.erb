@@ -4,17 +4,38 @@
   <tr>
     <th>#</th>
     <th>User</th>
-    <th>Score</th>
+    <th >Score</th>
+    <th >Gewonnen</th>
+    <th >Verloren</th>
+    <th >Gesamt</th>
+    <th >Quote</th>
+
   </tr>
   <% x= 1 %>
   <% @allUsers.each do |user| %>
     <tr>
       <td><%= x %></td>
         <td>
-          <%= image_tag(user.avatar.url(:thumb), class:'nav_avatar')%>
-          <%= user.vorname %>
+          <%= link_to user do %>
+            <%= image_tag(user.avatar.url(:thumb), class:'nav_avatar')%>
+            <%= user.vorname %>
+          <% end %>
       </td>
-      <td style="float: right"><%= user.score %></td>
+      <td ><%= user.score %></td>
+      <td ><%= user.won_matches %></td>
+      <td ><%= user.lost_matches %></td>
+
+      <% all_matches = user.lost_matches + user.won_matches %>
+
+      <td><%= all_matches %></td>
+      <td>
+        <%if all_matches > 0 %>
+          <%= ((user.won_matches*1.0/all_matches)*100).round%>
+          %
+        <% else %>
+          0
+        <% end %>
+      </td>
     </tr>
 
   <% x+=1 %>

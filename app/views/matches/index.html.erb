@@ -13,9 +13,20 @@
           <% player1 = User.find(match.player1) %>
           <% player2 = User.find(match.player2) %>
         <h5>
-          <div class="avatar left"><%= image_tag(player1.avatar.url(:thumb))%></div>
-          <div class="avatar right"><%= image_tag(player2.avatar.url(:thumb))%></div>
+
+          <%= link_to player1 do %>
+            <div class="avatar left">
+              <%= image_tag(player1.avatar.url(:thumb))%>
+            </div>
+          <% end %>
+          <%= link_to player2 do %>
+            <div class="avatar right">
+              <%= image_tag(player2.avatar.url(:thumb))%>
+            </div>
+          <% end %>
+
           <%= link_to "#{player1.vorname} vs. #{player2.vorname}", match, class:'card-title' %>
+
         </h5>
         <h6 class='card-subtitle text-muted'>
             <%= match.game %>
@@ -26,10 +37,6 @@
           <%= match.scoreplayer2 %>
         </div>
         <br>
-        <% if match.user == current_user %>
-          <%= link_to 'Edit', edit_match_path(match), class:'card-link' %>
-          <%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' }, class:'card-link' %>
-        <% end %>
         <div class='timestamp'>
           <%= date_format(match.created_at) %>
         </div>

@@ -34,14 +34,36 @@ class MatchesController < ApplicationController
     @match = current_user.matches.build(match_params)
     @user = current_user
     @allUsers = User.all
+    @player1 = User.find(params[:match][:player1])
+    @player2 = User.find(params[:match][:player2])
 
 
     respond_to do |format|
       if @match.save
+
+        if @match.scoreplayer1 < @match.scoreplayer2
+          #player1 gewinnt das Spiel und bekommt die Differenz des matches auf seinen score gutgeschrieben
+          @difference = @match.scoreplayer2 - @match.scoreplayer1
+
+          @player1.update_column(:won_matches, @player1.won_matches + 1)
+          @player1.update_column(:score, @player1.score + @difference)
+
+          @player2.update_column(:lost_matches, @player2.lost_matches + 1)
+          @player2.update_column(:score, @player2.score - @difference)
+        else
+          #player2 gewinnt das Spiel und bekommt die Differenz des matches auf seinen score gutgeschrieben
+          @difference = @match.scoreplayer2 - @match.scoreplayer1
+
+          @player2.update_column(:won_matches, @player2.won_matches + 1)
+          @player2.update_column(:score, @player2.score - @difference)
+
+          @player1.update_column(:lost_matches, @player1.lost_matches + 1)
+          @player1.update_column(:score, @player1.score - @difference)
+
+        end
+
         format.html { redirect_to @match, notice: 'Match was successfully created.' }
         format.json { render :show, status: :created, location: @match }
-        #@player1.update_column(:score, @match.scoreplayer1)
-
       else
         format.html { render :new }
         format.json { render json: @match.errors, status: :unprocessable_entity }

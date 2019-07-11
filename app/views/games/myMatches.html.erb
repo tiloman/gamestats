@@ -1,37 +1,15 @@
 <h1>Meine Spiele</h1>
 
-<% overallscore = 0 %>
-<% wonmatches = 0 %>
-<% lostmatches = 0 %>
-
-<% count_score(@matches) %>
-<% count_wins(@matches) %>
-<% count_loses(@matches) %>
-
 <% @matches_days.each do |day| %>
   <div class="date">
     <%= day[0].strftime("%d. %b %Y") %>
   </div>
 
   <% @matches.each do |match| %>
+  <% if match.created_at.strftime("%d. %b %Y") == day[0].strftime("%d. %b %Y") %>
+
     <% player1 = User.find(match.player1) %>
     <% player2 = User.find(match.player2) %>
-
-    <% if player1 == current_user %>
-      <% overallscore = overallscore + match.scoreplayer1 %>
-        <% if match.scoreplayer1 < match.scoreplayer2 %>
-          <% wonmatches = wonmatches + 1 %>
-        <% else %>
-          <% lostmatches = lostmatches + 1 %>
-        <% end %>
-    <% elsif player2 == current_user%>
-      <% overallscore = overallscore + match.scoreplayer2 %>
-        <% if match.scoreplayer2 > match.scoreplayer1 %>
-          <% wonmatches = wonmatches + 1 %>
-        <% else %>
-          <% lostmatches = lostmatches + 1 %>
-        <% end %>
-    <% end %>
 
     <div class='card'>
       <% if win_or_lose(match) == "Win" %>
@@ -43,8 +21,18 @@
       <% end %>
 
       <h5>
-        <div class="avatar left"><%= image_tag(player1.avatar.url(:thumb))%></div>
-        <div class="avatar right"><%= image_tag(player2.avatar.url(:thumb))%></div>
+
+        <%= link_to player1 do %>
+          <div class="avatar left">
+            <%= image_tag(player1.avatar.url(:thumb))%>
+          </div>
+        <% end %>
+        <%= link_to player2 do %>
+          <div class="avatar right">
+            <%= image_tag(player2.avatar.url(:thumb))%>
+          </div>
+        <% end %>
+
         <%= link_to "#{player1.vorname} vs. #{player2.vorname}", match, class:'card-title' %>
       </h5>
 
@@ -71,21 +59,5 @@
     </div>
     </div>
   <% end %>
-
-<hr>
 <% end %>
-
-<br>
-
-Gesamtpunktzahl:
-<%= overallscore %>
-
-Gewonnene Spiele:
-<%= wonmatches %>
-
-Verlorene Spiele:
-<%= lostmatches %>
-
-<br>
-
-<%= link_to 'New Match', new_match_path %>
+<% end %>

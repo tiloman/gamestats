@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_10_205850) do
+ActiveRecord::Schema.define(version: 2019_07_11_151314) do
 
   create_table "matches", force: :cascade do |t|
     t.text "game"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2019_07_10_205850) do
     t.text "nachname"
     t.string "avatar_file_name"
     t.string "avatar_content_type"
-    t.bigint "avatar_file_size"
+    t.integer "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.integer "score", default: 1000
     t.integer "won_matches", default: 0

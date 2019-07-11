@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2019_07_10_205850) do
     t.string "avatar_content_type"
     t.bigint "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.integer "score"
+    t.integer "score", default: 1000
     t.integer "won_matches", default: 0
     t.integer "lost_matches", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true

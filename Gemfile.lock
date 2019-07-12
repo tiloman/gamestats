@@ -258,7 +258,7 @@ DEPENDENCIES
   jquery-rails (~> 4.3, >= 4.3.5)
   listen (>= 3.0.5, < 3.2)
   paperclip
-  paperclip-storage-ftp (~> 1.2, >= 1.2.8)
+  paperclip-storage-ftp
   pg
   puma (~> 3.11)
   rails (~> 5.2.3)

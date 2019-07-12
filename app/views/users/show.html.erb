@@ -1,19 +1,33 @@
 <h1><%= @user.vorname %></h1>
+<div class='flexbox_container'>
+<div class='avatar_box'>
 <%= image_tag (@user.avatar.url(:medium)), class:'avatar_big' %>
 <br />
-
-Score:
+</div>
+<div class='stats_box'>
+  <h3>Info</h3>
+<b>Name:</b>
+<%= @user.vorname + ' '+ @user.nachname %>
+<br>
+<b>Score:</b>
 <%= @user.score %>
+<br/>
+
+<b>Spiele:</b>
+<%= all_matches = @user.lost_matches + @user.won_matches %>
 <br />
-Verlorene Duelle
+<b>Quote:</b>
+<%= ((@user.won_matches*1.0/all_matches)*100).round %> %
+<br />
+<b>Verlorene Duelle</b>
 <%= @user.lost_matches %>
 <br />
 
-Gewonnene Duelle
+<b>Gewonnene Duelle</b>
 <%= @user.won_matches %>
 <br />
-
-Matches:<br>
+</div>
+</div>
 <% i = 1 %>
 <% score = 1000 %>
 <% hash = {} %>

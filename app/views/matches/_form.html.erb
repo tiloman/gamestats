@@ -12,33 +12,40 @@
   <% end %>
 
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label 'Spiel' %>
-    <%= form.select :game, options_for_select([['Romme'], ['Mau Mau']])%>
+    <%= form.select :game, options_for_select([['Romme'], ['Mau Mau']]), {},  {class: 'form-control'}%>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.hidden_field :player1, :value => @user.id %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label 'Dein Gegner' %>
-    <%= form.select :player2, options_for_select(@allUsers.collect {|p| [p.vorname, p.id]}) %>
+    <%= form.select :player2, options_for_select(@allUsers.collect {|p| [p.vorname, p.id]}), {},  {class: 'form-control'} %>
   </div>
 
-  <div class="field">
-    <%= form.label 'Deine Punktzahl' %>
-    <%= form.text_field :scoreplayer1 %>
-  </div>
+  <div class="row">
 
-  <div class="field">
-    <%= form.label 'Gegnerische Punkte'%>
-    <%= form.text_field :scoreplayer2 %>
-  </div>
+     <div class="col">
+      <div class="form-group">
+        <%= form.label 'Deine Punktzahl' %>
+        <%= form.number_field :scoreplayer1, class:'form-control' %>
+      </div>
+    </div>
 
+    <div class="col">
+      <div class="form-group">
+        <%= form.label 'Gegnerische Punkte'%>
+        <%= form.number_field :scoreplayer2, class:'form-control' %>
+      </div>
+    </div>
+
+  </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit%>
   </div>
 
 <% end %>

@@ -14,3 +14,20 @@
   text-align: center;
   img { width: 100% }
 }
+
+.flexbox_container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+}
+.avatar_box {
+}
+
+.stats_box {
+  align-self: flex-end;
+  text-align: left;
+  // background-color: #eee;
+  padding: 1em;
+
+}

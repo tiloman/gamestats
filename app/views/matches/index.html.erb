@@ -5,7 +5,6 @@
     <%= day[0].strftime("%d. %b %Y") %>
   </div>
 
-
     <% @matches.each do |match| %>
     <% if match.created_at.strftime("%d. %b %Y") == day[0].strftime("%d. %b %Y") %>
       <div class='card'>
@@ -48,7 +47,6 @@
     <% end %>
 
 <% end %>
-
 
 <br>
 <br>

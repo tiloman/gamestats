@@ -13,10 +13,15 @@ Gewonnene Duelle
 <%= @user.won_matches %>
 <br />
 
-
 Matches:<br>
 <% i = 1 %>
+<% score = 1000 %>
+<% hash = {} %>
+
+<%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
+
 <% @my_matches.each do |match| %>
+
   <% player1 = User.find(match.player1) %>
   <% player2 = User.find(match.player2) %>
   <%= i %>
@@ -26,24 +31,32 @@ Matches:<br>
     <%= player2.vorname %>
     <% if match.scoreplayer1 > match.scoreplayer2 %>
       Verloren
-      <%= match.scoreplayer2- match.scoreplayer1 %>
+      <% score = score + (match.scoreplayer2 - match.scoreplayer1) %>
+      <% hash.store(i, score) %>
     <% else %>
       Gewonnen
-      <%= match.scoreplayer2 + match.scoreplayer1 %>
+      <% score = score + (match.scoreplayer2 + match.scoreplayer1) %>
+      <% hash.store(i, score) %>
     <% end %>
   <% elsif player2 == @user %>
     <%= player1.vorname %>
     <% if match.scoreplayer1 > match.scoreplayer2 %>
       Gewonnen
-      <%= match.scoreplayer1+ match.scoreplayer2 %>
+      <% score = score + (match.scoreplayer1+ match.scoreplayer2) %>
+      <% hash.store(i, score) %>
 
     <% else %>
       Verloren
-      <%= match.scoreplayer1- match.scoreplayer2 %>
+      <% score = score + (match.scoreplayer1- match.scoreplayer2) %>
+      <% hash.store(i, score) %>
 
     <% end %>
-<% i = i + 1 %>
-  <% end %>
 
+  <% end %>
+<% i = i + 1 %>
   <br>
 <% end %>
+
+<br>
+
+<%= area_chart hash, {library: {hAxis: {title: "Spiele"}, vAxis: {title: "Score"}}}  %>

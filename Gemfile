@@ -17,6 +17,9 @@ gem 'bootstrap', '~> 4.3', '>= 4.3.1'
 gem 'devise'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'paperclip'
+gem 'chartkick'
+gem 'groupdate'
+gem 'font-awesome-rails', '~> 4.6', '>= 4.6.3.1'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

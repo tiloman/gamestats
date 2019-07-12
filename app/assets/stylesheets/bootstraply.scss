@@ -7,8 +7,19 @@
 .container {
   background-color: white;
   min-height: 100%;
+  box-shadow: 0px 5px 5px #999;
+
 }
 
 body {
-  background-color: #f25c41;
+  background-color: #eee;
+}
+
+.navbar {
+  background-color: #fff !important;
+  height: 60px;
+  box-shadow: 0px 3px 5px #999;
+}
+.nav-link {
+font-size: 1.1em;
 }

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users
 
-  root 'games#index'
+  root 'matches#index'
   get 'games/about'
   get 'games/myMatches'
   get 'games/ranking'

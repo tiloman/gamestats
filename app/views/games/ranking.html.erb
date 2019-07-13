@@ -1,44 +1,43 @@
 <h1>Ranking</h1>
 
-<table style="width: 100%">
-  <tr>
-    <th>#</th>
-    <th>User</th>
-    <th >Score</th>
-    <th >Gewonnen</th>
-    <th >Verloren</th>
-    <th >Gesamt</th>
-    <th >Quote</th>
 
-  </tr>
+
   <% x= 1 %>
   <% @allUsers.each do |user| %>
-    <tr>
-      <td><%= x %></td>
-        <td>
-          <%= link_to user do %>
-            <%= image_tag(user.avatar.url(:thumb), class:'nav_avatar')%>
-            <%= user.vorname %>
-          <% end %>
-      </td>
-      <td ><%= user.score %></td>
-      <td ><%= user.won_matches %></td>
-      <td ><%= user.lost_matches %></td>
+  <div class="row ranking_row">
+    <div class="col">
+      <div class='ranking_number'><%= x %>
 
+      <%= link_to user do %>
+        <%= image_tag(user.avatar.url(:thumb), class:'nav_avatar')%>
+        <%= user.vorname %>
+      <% end %>
+      </div>
+    </div>
+
+    <div class="col">
+      <span class='ranking_main'><%= user.score %></span><br>
+      <p class='ranking_sub'>Score</p>
+    </div>
+
+    <div class="col">
       <% all_matches = user.lost_matches + user.won_matches %>
+      <span class='ranking_main'><%= all_matches %></span><br>
+        <p class='ranking_sub'>Spiele</p>
+    </div>
 
-      <td><%= all_matches %></td>
-      <td>
+    <div class="col">
         <%if all_matches > 0 %>
-          <%= ((user.won_matches*1.0/all_matches)*100).round%>
-          %
+          <span class='ranking_main'><%= ((user.won_matches*1.0/all_matches)*100).round%>
+          % </span><br>
+            <p class='ranking_sub'>Quote</p>
         <% else %>
-          0
+        <span class='ranking_main'>  0</span>
+        <p class='ranking_sub'>Quote</p>
         <% end %>
-      </td>
-    </tr>
+    </div>
+    </div>
 
   <% x+=1 %>
   <% end %>
-</table>
 <br>

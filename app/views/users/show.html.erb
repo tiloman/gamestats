@@ -1,38 +1,112 @@
 <h1><%= @user.vorname %></h1>
 <div class='flexbox_container'>
-<div class='avatar_box'>
-<%= image_tag (@user.avatar.url(:medium)), class:'avatar_big' %>
-<br />
-</div>
-<div class='stats_box'>
-  <h3>Info</h3>
-<b>Name:</b>
-<%= @user.vorname + ' '+ @user.nachname %>
-<br>
-<b>Score:</b>
-<%= @user.score %>
-<br/>
+  <div class='avatar_box'>
+    <%= image_tag (@user.avatar.url(:medium)), class:'avatar_big' %>
+  </div>
 
-<b>Spiele:</b>
-<%= all_matches = @user.lost_matches + @user.won_matches %>
-<br />
-<b>Quote:</b>
-<%= ((@user.won_matches*1.0/all_matches)*100).round %> %
-<br />
-<b>Verlorene Duelle</b>
-<%= @user.lost_matches %>
-<br />
+  <div class='stats_box'>
+    <h3>Info</h3>
+    <b>Name:</b>
+    <%= @user.vorname + ' '+ @user.nachname %>
+    <br>
+    <b>Score:</b>
+      <%= @user.score %>
+    <br/>
 
-<b>Gewonnene Duelle</b>
-<%= @user.won_matches %>
-<br />
+    <b>Spiele:</b>
+      <%= all_matches = @user.lost_matches + @user.won_matches %>
+    <br />
+
+    <b>Quote:</b>
+    <% if all_matches != 0 %>
+      <%= ((@user.won_matches*1.0/all_matches)*100).round %> %
+      <% end %>
+    <br />
+
+    <b>Verlorene Spiele</b>
+      <%= @user.lost_matches %>
+    <br />
+
+    <b>Gewonnene Spiele</b>
+      <%= @user.won_matches %>
+    <br />
+  </div>
+
+
+<div class='opponents'>
+    <% opponent = [] %>
+    <% @my_matches.each do |match| %>
+
+        <% player1 = User.find(match.player1) %>
+        <% player2 = User.find(match.player2) %>
+
+        <%if (@user != player1) && (@user == player2) %>
+          <% opponent.push(player1.id) %>
+        <%end %>
+
+        <%if (@user != player2) && (@user == player1) %>
+          <% opponent.push(player2.id) %>
+        <%end %>
+    <% end %>
+
+    <% opponent_matches = opponent.inject(Hash.new(0)) { |total, e| total[e] += 1 ;total} %>
+    <% opponent_matches = opponent_matches.sort_by { |id, matches| matches }.reverse %>
+    <% opponent_matches.first(1).each do |match| %>
+      <% opponent = User.find(match[0]) %>
+      <h4>Lieblingsgegner: <%= opponent.vorname %></h4>
+      <br>
+      <%= link_to opponent do %>
+      <%= image_tag (opponent.avatar.url(:thumb)), class:'avatar' %>
+      <% end %>
+      <br>
+      Duelle:
+      <%= match[1] %>
+      <br>
+      <% opponents_duelle = Match.where('player1 = ? or player2 = ?', opponent.id, opponent.id) %>
+      <% duelle = opponents_duelle.where('player1 = ? or player2 = ?', @user.id, @user.id) %>
+      <% gewonnene_duelle = 0 %>
+      <% verlorene_duelle = 0 %>
+      <% duelle.each do |duell| %>
+
+        <% player1 = User.find(duell.player1) %>
+        <% player2 = User.find(duell.player2) %>
+
+        <% if player1 == opponent%>
+
+          <% if duell.scoreplayer1 < duell.scoreplayer2 %>
+          <% verlorene_duelle = verlorene_duelle +1 %>
+          <% else %>
+          <% gewonnene_duelle = gewonnene_duelle +1 %>
+
+          <% end %>
+
+        <% end %>
+
+        <% if player2 == opponent %>
+
+          <%if duell.scoreplayer1 > duell.scoreplayer2 %>
+          <% verlorene_duelle = verlorene_duelle +1 %>
+          <% else %>
+          <% gewonnene_duelle = gewonnene_duelle +1 %>
+          <% end %>
+
+        <% end %>
+
+        <% end %>
+        Gegen <%= @user.vorname %> verloren:
+        <%= verlorene_duelle %>
+        <br>
+        Gegen <%= @user.vorname %> gewonnen:
+        <%= gewonnene_duelle %>
+    <% end %>
+
+
 </div>
 </div>
 <% i = 1 %>
 <% score = 1000 %>
 <% hash = {} %>
 
-<%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
 
 <% @my_matches.each do |match| %>
 
@@ -52,6 +126,8 @@
       <% score = score + (match.scoreplayer2 + match.scoreplayer1) %>
       <% hash.store(i, score) %>
     <% end %>
+    <% i = i + 1 %>
+
   <% elsif player2 == @user %>
     <% player1.vorname %>
     <% if match.scoreplayer1 > match.scoreplayer2 %>
@@ -65,11 +141,11 @@
       <% hash.store(i, score) %>
 
     <% end %>
+    <% i = i + 1 %>
 
   <% end %>
-<% i = i + 1 %>
 <% end %>
 
 <br>
 
-<%= area_chart hash, {library: {hAxis: {title: "Spiele"}, vAxis: {title: "Score"}}}  %>
+<%= line_chart hash, {library: {hAxis: {title: "Spiele"}, vAxis: {title: "Score"}, pointSize: 0,}, colors:['red','#004411'], curveType: 'function', legend: 'none'}  %>

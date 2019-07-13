@@ -5,9 +5,9 @@
 .avatar_big {
   background-color: white;
   border: 1px solid #d9d9d9;
-  border-radius: 150px;
-  -moz-border-radius: 150px;
-  -webkit-border-radius: 150px;
+  border-radius: 50px;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
   height: 300px;
   width: 300px;
   overflow: hidden;
@@ -22,12 +22,39 @@
 
 }
 .avatar_box {
+  align-self: flex-start;
+
 }
 
 .stats_box {
-  align-self: flex-end;
+  align-self: flex-start;
   text-align: left;
   // background-color: #eee;
   padding: 1em;
+  margin: 1em;
+
+  flex-grow: 8;
 
 }
+
+.opponents {
+  padding: 1em;
+  margin: 1em;
+  // text-align: right;
+  box-shadow: 2px 5px 5px #999;
+  img { width: 80px;height: 80px; };
+  text-align: center
+}
+
+
+@media (max-width: 991.98px) {
+.stats_box {
+  text-align: center;
+
+}
+.opponents {
+  box-shadow: none;
+  border-top: solid 2px #eee;
+
+}
+ }

@@ -31,6 +31,9 @@
   float: right;
   font-size: 0.8em;
   font-weight: 200;
+  margin-bottom: -3em;
+  margin-right: -1em;
+
 }
 
 .date {
@@ -49,4 +52,35 @@
 
 .card-body {
   text-align: center;
+}
+
+
+.ranking_sub {
+  font-size: 0.5em;
+  font-weight: 600;
+  padding: 0;
+  margin: 0;
+}
+
+.ranking_number {
+  font-size: 1.5em;
+  font-weight: 600;
+  border-left: 8px solid #f25c41;
+  padding-left: 5px;
+  a { font-weight: 200; color: inherit; font-size: 0.8em; text-decoration: none}
+}
+
+.ranking_main {
+  padding: 0;
+  margin: 0;
+  font-size: 1.5em;
+  font-weight: 200;
+}
+.ranking_row {
+  border-bottom: 1px solid #eee;
+  margin-bottom:1em;
+}
+.ranking_row:hover {
+  background-color: #f25c41;
+  color: white;
 }

@@ -23,9 +23,9 @@
               <%= image_tag(player2.avatar.url(:thumb))%>
             </div>
           <% end %>
-
+          <div class='rivals'>
           <%= link_to "#{player1.vorname} vs. #{player2.vorname}", match, class:'card-title' %>
-
+          </div>
         </h5>
         <h6 class='card-subtitle text-muted'>
             <%= match.game %>
@@ -50,5 +50,3 @@
 
 <br>
 <br>
-
-<%= link_to 'New Match', new_match_path %>

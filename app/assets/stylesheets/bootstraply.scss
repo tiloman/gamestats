@@ -29,11 +29,26 @@ font-size: 1.1em;
 }
 .px-4 {
   margin: auto;
-  width: 80%;
-  max-width: 460px;
-  box-shadow: 0px 3px 5px #999;
+  width: 100%;
+  max-width: 700px;
+  // box-shadow: 0px 3px 5px #999;
 }
 
+.input-group-text {
+  color: #f25c41;
+  // background-color: #f25c41;
+  // font-weight: 200;
+}
+
+.btn-primary {
+  background-color: #f25c41;
+  border: 0;
+}
+
+.btn-primary:hover {
+  background-color: #f25c41;
+
+}
 @media (max-width: 991.98px) {
 
 }

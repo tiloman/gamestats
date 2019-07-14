@@ -36,7 +36,9 @@
           </div>
         <% end %>
 
+        <div class='rivals'>
         <%= link_to "#{player1.vorname} vs. #{player2.vorname}", match, class:'card-title' %>
+        </div>
       </h5>
 
       <h6 class='card-subtitle text-muted'>
@@ -52,8 +54,9 @@
       <br>
 
       <% if match.user == current_user %>
-        <%= link_to 'Edit', edit_match_path(match), class:'card-link' %>
-        <%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' }, class:'card-link' %>
+      <div class='edit_match'>
+        <%= link_to 'Löschen', match, method: :delete, data: { confirm: 'Sicher?' }, class:'card-link' %>
+      </div>
       <% end %>
 
       <div class='timestamp'>
@@ -65,3 +68,4 @@
 <% end %>
 <% end %>
 <% end %>
+<br><br>

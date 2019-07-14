@@ -1,6 +1,6 @@
 <h1>Ranking</h1>
 
-
+<br>
 
   <% x= 1 %>
   <% @allUsers.each do |user| %>
@@ -17,23 +17,23 @@
 
     <div class="col">
       <span class='ranking_main'><%= user.score %></span><br>
-      <p class='ranking_sub'>Score</p>
+      <p class='ranking_sub'>SCORE</p>
     </div>
 
     <div class="col">
       <% all_matches = user.lost_matches + user.won_matches %>
       <span class='ranking_main'><%= all_matches %></span><br>
-        <p class='ranking_sub'>Spiele</p>
+        <p class='ranking_sub'>SPIELE</p>
     </div>
 
     <div class="col">
         <%if all_matches > 0 %>
           <span class='ranking_main'><%= ((user.won_matches*1.0/all_matches)*100).round%>
           % </span><br>
-            <p class='ranking_sub'>Quote</p>
+            <p class='ranking_sub'>QUOTE</p>
         <% else %>
         <span class='ranking_main'>  0</span>
-        <p class='ranking_sub'>Quote</p>
+        <p class='ranking_sub'>QUOTE</p>
         <% end %>
     </div>
     </div>

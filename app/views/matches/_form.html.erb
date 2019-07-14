@@ -11,41 +11,46 @@
     </div>
   <% end %>
 
-
-  <div class="form-group">
-    <%= form.label 'Spiel' %>
-    <%= form.select :game, options_for_select([['Romme'], ['Mau Mau']]), {},  {class: 'form-control'}%>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <label class="input-group-text" for="inputGroupSelect01">Spiel</label>
+    </div>
+    <%= form.select :game, options_for_select([['Romme'], ['Mau Mau']]), {},  {class: 'custom-select'}%>
   </div>
+
 
   <div class="form-group">
     <%= form.hidden_field :player1, :value => @user.id %>
   </div>
 
-  <div class="form-group">
-    <%= form.label 'Dein Gegner' %>
-    <%= form.select :player2, options_for_select(@allUsers.collect {|p| [p.vorname, p.id]}), {},  {class: 'form-control'} %>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <label class="input-group-text" for="inputGroupSelect01">Gegner</label>
+    </div>
+    <%= form.select :player2, options_for_select(@allUsers.collect {|p| [p.vorname, p.id]}), {},  {class: 'custom-select'} %>
+  </div>
+<br><br>
+
+  <div class="flex_container">
+    <div class="match_score_card">
+
+        <div class="input-group-prepend">
+          <span class="match_score_head">Deine Punktzahl</span>
+        </div>
+          <%= form.number_field :scoreplayer1, class:'match_score', :value => '0' %>
+      </div>
+      <div class="match_score_card">
+          <div class="input-group-prepend">
+            <span class="match_score_head">Gegner Punktzahl</span>
+          </div>
+          <%= form.number_field :scoreplayer2, class:'match_score', :value => '0' %>
+    </div>
   </div>
 
-  <div class="row">
-
-     <div class="col">
-      <div class="form-group">
-        <%= form.label 'Deine Punktzahl' %>
-        <%= form.number_field :scoreplayer1, class:'form-control' %>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="form-group">
-        <%= form.label 'Gegnerische Punkte'%>
-        <%= form.number_field :scoreplayer2, class:'form-control' %>
-      </div>
-    </div>
-
-  </div>
-
+<br>
+<br>
   <div class="actions">
-    <%= form.submit%>
+    <%= form.submit class:'btn btn-primary'%>
   </div>
-
+<br>
 <% end %>

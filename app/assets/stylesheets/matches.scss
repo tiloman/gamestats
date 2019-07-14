@@ -54,12 +54,19 @@
   text-align: center;
 }
 
-
+.rivals {
+  font-size: 1em;
+  a {
+    color: #f25c41;
+    text-decoration: none;
+  }
+}
 .ranking_sub {
   font-size: 0.5em;
   font-weight: 600;
   padding: 0;
   margin: 0;
+  color: #f25c41;
 }
 
 .ranking_number {
@@ -80,7 +87,49 @@
   border-bottom: 1px solid #eee;
   margin-bottom:1em;
 }
-.ranking_row:hover {
-  background-color: #f25c41;
-  color: white;
+.ranking_row:hover  {
+font-size: 1.5em;
+transition: all 0.1s ease-out;
+
+}
+
+.edit_match {
+  float: left;
+  a {color:grey; font-weight: 200; font-size: 0.8em;};
+
+}
+
+.match_score {
+  font-size: 1.8em;
+  width: 200px;
+  height: 150px;
+  color: #f25c41;
+  font-weight: 200;
+  text-align: center;
+
+}
+
+.match_score_head {
+  font-size: 1.2em;
+  font-weight: 200;
+  color: #f25c41;
+  text-align: center;
+  background-color: #eee;
+  width: 200px;
+  height: 35px;
+  padding-left: 1em;
+  padding-right: 1em;
+  border: 1px solid #ccc;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.match_score_card {
+  box-shadow: 0px 3px 3px #999;
+  border-radius: 5px;
+}
+.flex_container {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
 }

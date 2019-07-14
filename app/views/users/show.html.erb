@@ -62,8 +62,8 @@
       Duelle:
       <%= match[1] %>
       <br>
-      <% opponents_duelle = Match.where('lower(player1) ILIKE ? OR lower(player2) ILIKE ?', opponent.id, opponent.id) %>
-      <% duelle = opponents_duelle.where('lower(player1) ILIKE ? OR lower(player2) ILIKE ?', @user.id, @user.id) %>
+      <% opponents_duelle = Match.where('player1 = ? OR player2 = ?', opponent.id, opponent.id) %>
+      <% duelle = opponents_duelle.where('player1 = ? OR player2 = ?', @user.id, @user.id) %>
       <% gewonnene_duelle = 0 %>
       <% verlorene_duelle = 0 %>
       <% duelle.each do |duell| %>

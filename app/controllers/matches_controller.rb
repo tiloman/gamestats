@@ -62,7 +62,7 @@ class MatchesController < ApplicationController
 
         end
 
-        format.html { redirect_to @match, notice: 'Match was successfully created.' }
+        format.html { redirect_to @match, notice: 'Spiel erfolgreich erstellt.' }
         format.json { render :show, status: :created, location: @match }
       else
         format.html { render :new }
@@ -90,7 +90,7 @@ class MatchesController < ApplicationController
   def destroy
     @match.destroy
     respond_to do |format|
-      format.html { redirect_to matches_url, notice: 'Match was successfully destroyed.' }
+      format.html { redirect_to matches_url, notice: 'Spiel erfolgreich gelöscht.' }
       format.json { head :no_content }
     end
   end

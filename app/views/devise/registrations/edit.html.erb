@@ -27,9 +27,13 @@
   <% end %>
 
 <br>
+Neues Passwort (wenn es nicht geändert werden soll, einfach leer lassen):<br>
+<% if @minimum_password_length %>
+  <em><%= @minimum_password_length %> Zeichen minimum</em>
+<% end %><br><br>
   <div class="input-group mb-3">
     <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Neues Passwort</span>
+      <span class="input-group-text" id="basic-addon1">Passwort</span>
     </div>
     <%= f.password_field :password, autocomplete: "new-password", class:'form-control' %>
    </div>
@@ -41,10 +45,7 @@
     </div>
     <%= f.password_field :password_confirmation, autocomplete: "new-password",class:'form-control' %>
 
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> Zeichen minimum</em>
-    <% end %></div>
+    </div>
 
 <br>
 <p>Um Änderungen vorzunehmen, hier bitte das aktuelle Passwort eingeben: </p>

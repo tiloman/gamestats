@@ -1,13 +1,41 @@
-<p id="notice"><%= notice %></p>
+<% player1 = User.find(@match.player1) %>
+<% player2 = User.find(@match.player2) %>
+<div class='px-4 py-3' >
 
-<p>
-  <strong>Game:</strong>
-  <%= @match.game %>
-  <td><%= @match.player1 %></td>
-  <td><%= @match.player2 %></td>
-  <td><%= @match.scoreplayer1 %></td>
-  <td><%= @match.scoreplayer2 %></td>
-</p>
+<%= date_format(@match.created_at) %>
 
-<%= link_to 'Edit', edit_match_path(@match) %> |
-<%= link_to 'Back', matches_path %>
+  <div class='card-body'>
+
+  <h5>
+
+    <%= link_to player1 do %>
+      <div class="avatar_medium left">
+        <%= image_tag(player1.avatar.url(:medium))%>
+      </div>
+    <% end %>
+    <%= link_to player2 do %>
+      <div class="avatar_medium right">
+        <%= image_tag(player2.avatar.url(:medium))%>
+      </div>
+    <% end %>
+    <div class='rivals' style='font-size: 1.5em;'>
+      <%= player1.vorname%> vs.
+      <%= player2.vorname%>
+
+    </div>
+  </h5>
+  <h6 class='card-subtitle text-muted'>
+      <%= @match.game %>
+  </h6>
+  <div class='result' style='font-size: 3em;'>
+    <%= @match.scoreplayer1 %>
+    :
+    <%= @match.scoreplayer2 %>
+  </div>
+  <br>
+
+
+  </div>
+</div>
+<br><br><br>
+<%= link_to 'Alle Spiele', matches_path %>

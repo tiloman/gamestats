@@ -42,6 +42,7 @@ end
 
 group :production do
   gem 'pg'
+  gem 'aws-s3', '~> 0.6.3'
 end
 
 

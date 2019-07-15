@@ -21,6 +21,7 @@ gem 'chartkick'
 gem 'groupdate'
 gem 'font-awesome-rails', '~> 4.6', '>= 4.6.3.1'
 gem 'paperclip-storage-ftp'
+gem 'aws-sdk'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

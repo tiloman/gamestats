@@ -93,7 +93,7 @@ Rails.application.configure do
     s3_region: ENV.fetch('AWS_REGION'),
   }
 }
-  
+
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
